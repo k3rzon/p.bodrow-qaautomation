@@ -21,11 +21,10 @@ public class myTest {
     @Before
     public void start() {
         driverc = new ChromeDriver();
-        driverf = new FirefoxDriver();
-        driverie = new InternetExplorerDriver();
-
         wait = new WebDriverWait(driverc,20);
-        wait = new WebDriverWait(driverf,20);
+        driverf = new FirefoxDriver();
+        wait = new WebDriverWait(driverie,20);
+        driverie = new InternetExplorerDriver();
         wait = new WebDriverWait(driverie,20);
     }
 
