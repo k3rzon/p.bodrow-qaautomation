@@ -46,13 +46,11 @@ public class myTest_9_2 {
             WebElement target = driverc.findElement(By.cssSelector("td tr.row:nth-child(" + String.valueOf(i + 2) + ") a"));
             ((JavascriptExecutor) driverc).executeScript("window.open('" + target.getAttribute("href") + "', 'new_window')");
             driverc.switchTo().window("new_window");
-            //country_zones = driverc.findElements(By.cssSelector("tr td:nth-child(3) select:not([class*='hidden'])"));
             country_zones = driverc.findElements(By.cssSelector("tr td:nth-child(3) option[selected='selected']"));
             for (int j = 1; j < country_zones.size(); j=j+2) {
-                orig_country_zones.add(country_zones.get(j).getText());
-                System.out.println(country_zones.get(j).getText());
+                if  (country_zones.get(j).isDisplayed()) {
+                orig_country_zones.add(country_zones.get(j).getText());}
             }
-            System.out.println("*****************************************");
             sorted = new ArrayList<>(orig_country_zones);
             Collections.sort(sorted);
             assertEquals(sorted, orig_country_zones);
