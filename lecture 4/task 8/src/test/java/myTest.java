@@ -26,9 +26,9 @@ public class myTest {
         }
 
     @Test
-    public void test() throws InterruptedException {
+    public void test() {
         driver.get("http://localhost/litecart/en/");
-        we = driver.findElements(By.cssSelector("ul[class='listing-wrapper products'] a.link"));
+        we = driver.findElements(By.cssSelector("li[class*=product]"));
         for (WebElement element:we) {
             stickers = element.findElements((By.cssSelector("div[class*=sticker]")));
             assertEquals(1, stickers.size());

@@ -10,7 +10,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.openqa.selenium.support.ui.ExpectedConditions.titleIs;
 
-public class myTest {
+public class myTest_9_1 {
 
     private WebDriver driverc;
     private WebDriverWait wait;
@@ -82,39 +82,6 @@ public class myTest {
             }
         }
     }
-
-    @Test
-    public void test2() {
-        driverc.get("http://localhost/litecart/admin/?app=geo_zones&doc=geo_zones");
-        driverc.findElement(By.name("username")).sendKeys("admin");
-        driverc.findElement(By.name("password")).sendKeys("admin");
-        driverc.findElement(By.name("login")).click();
-        wait.until(titleIs("Geo Zones | My Store"));
-        driverc.findElement(By.cssSelector("td tr.row:nth-child(2) a"));
-        countries = driverc.findElements(By.cssSelector("td tr.row"));
-        for (int i = 0; i < countries.size(); i++) {
-            WebElement target = driverc.findElement(By.cssSelector("td tr.row:nth-child(" + String.valueOf(i + 2) + ") a"));
-            ((JavascriptExecutor) driverc).executeScript("window.open('" + target.getAttribute("href") + "', 'new_window')");
-            driverc.switchTo().window("new_window");
-            System.out.println(driverc.getTitle());
-            country_zones = driverc.findElements(By.cssSelector("tr td:nth-child(3)"));
-            for (int k = 1; k < value + 1; k++) {
-                orig_country_zones.add(country_zones.get(k).getText());
-            }
-            sorted = new ArrayList<>(orig_country_zones);
-            Collections.sort(sorted);
-            assertEquals(sorted, orig_country_zones);
-            orig_country_zones.clear();
-            sorted.clear();
-            tabs = new ArrayList<>(driverc.getWindowHandles());
-            driverc.close();
-            driverc.switchTo().window(tabs.get(0));
-        }
-        }
-    }
-
-
-
     @After
     public void stop() {
         driverc.quit();
