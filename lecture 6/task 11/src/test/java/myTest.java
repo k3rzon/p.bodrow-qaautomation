@@ -30,9 +30,9 @@ public class myTest {
 
     @Before
     public void start() {
-    driverc = new ChromeDriver();
-    waitc = new WebDriverWait(driverc, 20);
-    builder = new Actions(driverc);
+        driverc = new ChromeDriver();
+        waitc = new WebDriverWait(driverc, 20);
+        builder = new Actions(driverc);
     }
 
     @Test
@@ -61,26 +61,20 @@ public class myTest {
                 .sendKeys("New York")
                 .sendKeys(Keys.ENTER)
                 .perform();
-        //select_zone.selectByValue("New York");
         driverc.findElement(By.cssSelector("button[type='submit']")).click();
-        notice_success = driverc.findElement(By.cssSelector("div[class ='notice success']"));
-        //Assert.assertEquals(notice_success.isDisplayed(), true);
         driverc.findElement(By.xpath("//*[contains(text(), 'Logout')]")).click();
-        //Assert.assertEquals(notice_success.isDisplayed(), true);
-        Thread.sleep(20000);
         driverc.findElement(By.cssSelector("input[name='email']")).sendKeys(email);
         driverc.findElement(By.cssSelector("input[name='password']")).sendKeys(pass);
         driverc.findElement(By.cssSelector("input[name='password']")).click();
-        Thread.sleep(30000);
-
-        //НА ЭТОМ БЛОКЕ ТЕСТ ПАДАЕТ СО STALE ELEMENT EXCEPTION
         driverc.findElement(By.cssSelector("table button[name='login']")).click();
+        Thread.sleep(3000);
+        notice_success = driverc.findElement(By.cssSelector("div[class ='notice success']"));
         Assert.assertEquals(notice_success.isDisplayed(), true);
     }
 
     @After
     public void stop() {
-      driverc.quit();
-      driverc = null;
+        driverc.quit();
+        driverc = null;
     }
 }
